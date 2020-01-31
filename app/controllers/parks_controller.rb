@@ -2,8 +2,12 @@ class ParksController < ApplicationController
   include Response
 
   def index
-    name = params[:name]
-    @parks = Park.search(name)
+    if params[:national]
+      @parks = Park.find_national
+    else
+      name = params[:name]
+      @parks = Park.search(name)
+    end
     json_response(@parks)
   end
 
