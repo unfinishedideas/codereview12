@@ -18,6 +18,7 @@ describe "patch a park route", :type => :request do
     patch "/parks/#{park_id}", params: { :name => 'Yosemite II'}
     expect(JSON.parse(response.body)['message']).to eq("This park has been updated successfully.")
   end
+
   it 'returns a 200 status code' do
     patch "/parks/#{park_id}", params: { :name => 'Yosemite II'}
     expect(response).to have_http_status(:success)

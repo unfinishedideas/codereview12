@@ -6,6 +6,9 @@ class ParksController < ApplicationController
       @parks = Park.find_national
     elsif params[:random]
       @parks = Park.get_random
+    elsif params[:state]
+      state = params[:state]
+      @parks = Park.find_state(state)
     else
       name = params[:name]
       @parks = Park.search(name)
