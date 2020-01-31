@@ -5,3 +5,23 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+class Seed
+
+  def self.begin
+    seed = Seed.new
+    seed.generate_parks
+  end
+
+  def generate_parks
+    20.times do |i|
+      park = Park.create!(
+        name: Faker::TvShows::ParksAndRec.city,
+        state: Faker::Team.state,
+        national: [true, false].sample
+      )
+      puts "Park #{i}: Name is #{park.name}, is located in '#{park.state}'. Is it a national park? #{park.national}"
+    end
+  end
+end
+
+Seed.begin
