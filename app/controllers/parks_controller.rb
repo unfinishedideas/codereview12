@@ -4,6 +4,8 @@ class ParksController < ApplicationController
   def index
     if params[:national]
       @parks = Park.find_national
+    elsif params[:random]
+      @parks = Park.get_random
     else
       name = params[:name]
       @parks = Park.search(name)

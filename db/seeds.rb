@@ -8,6 +8,7 @@
 class Seed
 
   def self.begin
+    Park.destroy_all
     seed = Seed.new
     seed.generate_parks
   end
@@ -15,7 +16,7 @@ class Seed
   def generate_parks
     20.times do |i|
       park = Park.create!(
-        name: Faker::TvShows::ParksAndRec.city,
+        name: Faker::Movies::LordOfTheRings.location,
         state: Faker::Team.state,
         national: [true, false].sample
       )
