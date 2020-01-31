@@ -16,7 +16,6 @@ describe "search park route", :type => :request do
 
   it 'should find a list of parks by state' do
     get '/parks/?state=Oregon'
-    binding.pry
     expect(JSON.parse(response.body).size).to eq(2)
   end
 
@@ -26,7 +25,7 @@ describe "search park route", :type => :request do
   end
 
   it 'returns status code 200' do
-
+    get '/parks/?national=true'
     expect(response).to have_http_status(:success)
   end
 

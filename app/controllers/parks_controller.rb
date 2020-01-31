@@ -22,8 +22,11 @@ class ParksController < ApplicationController
   end
 
   def create
-    @park = Park.create!(park_params)
-    json_response(@park, :created)
+    if @park = Park.create!(park_params)
+      render status: 201, json: {
+        message: "Park has been created successfully."
+      }
+    end
   end
 
   def update

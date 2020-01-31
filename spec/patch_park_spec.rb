@@ -5,7 +5,8 @@ describe "patch a park route", :type => :request do
   park_id = 0;
   before do
     post '/parks', params: { :name => 'Da Best Park', :state => 'Alaska', :national => true }
-    park_id = JSON.parse(response.body).fetch("id")
+    get '/parks/?name=Da Best Park'
+    park_id = JSON.parse(response.body).first.fetch("id")
   end
 
   it 'updates the parks name' do

@@ -6,7 +6,8 @@ describe "delete park route", :type => :request do
 
   before do
     post '/parks', params: { :name => 'Da Best Park III', :state => 'Alaska', :national => true }
-    park_id = JSON.parse(response.body).fetch("id")
+    get '/parks/?name=Da Best Park III'
+    park_id = JSON.parse(response.body).first.fetch("id")
   end
 
   it 'should delete a park' do

@@ -6,16 +6,8 @@ describe "post a park route", :type => :request do
     post '/parks', params: { :name => 'Da Best Park', :state => 'Alaska', :national => true }
   end
 
-  it 'returns the park name' do
-    expect(JSON.parse(response.body)['name']).to eq('Da Best Park')
-  end
-
-  it 'returns the park state' do
-    expect(JSON.parse(response.body)['state']).to eq('Alaska')
-  end
-
-  it 'returns the park national status' do
-    expect(JSON.parse(response.body)['national']).to eq(true)
+  it 'returns a park created message' do
+    expect(JSON.parse(response.body)['message']).to eq("Park has been created successfully.")
   end
 
   it 'returns a created status' do
@@ -30,8 +22,8 @@ describe "post a park with no national status", :type => :request do
       post '/parks', params: { :name => 'Da Best Park Again', :state => 'Hawaii'}
   end
 
-  it 'returns the park with no national' do
-    expect(JSON.parse(response.body)['name']).to eq('Da Best Park Again')
+  it 'returns a park created message' do
+    expect(JSON.parse(response.body)['message']).to eq("Park has been created successfully.")
   end
 
   it 'returns a created status' do
@@ -40,19 +32,23 @@ describe "post a park with no national status", :type => :request do
 end
 
 
-# describe "bad post call", :type => :request do
-#
-#   it 'returns an exception if name is blank' do
-#     post '/parks', params: { :name => '', :state => 'Alabama'}
-#     binding.pry
-#     expect(response).to raise_error(Errors::StateNameNotFound)
-#   end
-#   it 'returns an exception if state is blank' do
-#     post '/parks', params: { :name => 'Da Best Park III', :state => ''}
-#     expect(response).to raise_error(Errors::StateNameNotFound)
-#   end
-#   it 'returns an exception if both name and state is blank' do
-#     post '/parks', params: { :name => '', :state => ''}
-#     expect(response).to raise_error(Errors::StateNameNotFound)
-#   end
-# end
+describe "bad post call", :type => :request do
+
+  it 'returns an exception if name is blank' do
+    post '/parks', params: { :name => '', :state => 'Alabama'}
+    expect(JSON.parse(response.body)['message']).to eq("Validation failed: Name can't be blank")
+    expect(response).to have_http_status(:not_found)
+  end
+
+  it 'returns an exception if state is blank' do
+    post '/parks', params: { :name => 'Oogity', :state => ''}
+    expect(JSON.parse(response.body)['message']).to eq("Validation failed: State can't be blank")
+    expect(response).to have_http_status(:not_found)
+  end
+
+  it 'returns an exception if both name and state is blank' do
+    post '/parks', params: { :name => '', :state => ''}
+    expect(JSON.parse(response.body)['message']).to eq("Validation failed: Name can't be blank, State can't be blank")
+    expect(response).to have_http_status(:not_found)
+  end
+end
