@@ -14,6 +14,7 @@ class UsersController < ApplicationController
     def login
       authenticate params[:email], params[:password]
     end
+
     def test
       render json: {
             message: 'You have passed authentication and authorization test'
@@ -43,5 +44,5 @@ class UsersController < ApplicationController
       end
      end
   end
-  
+
 # https://www.codementor.io/@omedale/simple-approach-to-rails-5-api-authentication-with-json-web-token-cpqbgrdo6

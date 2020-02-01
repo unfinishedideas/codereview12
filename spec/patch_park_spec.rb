@@ -3,6 +3,12 @@ require 'pry'
 
 describe "patch a park route", :type => :request do
   park_id = 0;
+
+  before(:all) do
+    post '/auth/register', params: { :name => 'test_user', :password => '123', :email => 'test@test.com'}
+    post '/auth/login', params: { :name => 'test_user', :password => '123', :email => 'test@test.com'}
+  end
+
   before do
     post '/parks', params: { :name => 'Da Best Park', :state => 'Alaska', :national => true }
     get '/parks/?name=Da Best Park'

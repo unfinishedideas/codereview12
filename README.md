@@ -8,12 +8,16 @@ This API stores and recalls information on state and national parks across the U
 ## Installation
 * Install Ruby 2.5.7 on your machine
 * Install SQL 12.1 with Postgres on your machine
-* Clone the git repository at _https://github.com/unfinishedideas/codereview10.git_
-* Navigate to folder and run Bundle install from terminal
+* In terminal navigate to where you want the file and run `git clone https://github.com/unfinishedideas/codereview12.git`
+* Navigate inside folder and run Bundle install from terminal
 * In terminal navigate to the folder and run `rake db:create` to create the database
 * Next run `rake db:migrate` to get the tables created
 * Optionally run `rake db:seed` to generate a series of random parks
-* Finally `rails s` to start the server. You should now be able to make API calls from localhost:3000 (ie: `localhost:3000/parks`)
+* `rails s` to start the server.
+* Create a user via `localhost:3000/auth/register` with the following headers: name, email, password  (in postman you may need to select x-www-form-urlencoded)
+* Log in `localhost:3000/auth/login` with your credentials passed as headers
+* If having troubles registering or logging in locate the postman parts on this page: https://www.codementor.io/@omedale/simple-approach-to-rails-5-api-authentication-with-json-web-token-cpqbgrdo6
+* You should now be able to make API calls from localhost:3000 (ie: `localhost:3000/parks`)
 
 ## End Points
 | Functionality | API Call |
