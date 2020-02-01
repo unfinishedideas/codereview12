@@ -47,7 +47,11 @@ class ParksController < ApplicationController
     end
   end
 
+  private
   def park_params
     params.permit(:state, :name, :national)
   end
+
 end
+
+# HTTP authentication found here: https://api.rubyonrails.org/classes/ActionController/HttpAuthentication/Token.html
