@@ -24,11 +24,11 @@ This API stores and recalls information on state and national parks across the U
 
 ![alt text](/help_pic/step1.png "Tutorial image step 1")
 
-* ___IMPORTANT!___ When making calls make sure you have pasted your access token headers under the name "Authorization"
+* ___IMPORTANT!___ When making calls make sure you have pasted your access token in the headers under the name "Authorization"
 
 ![alt text](/help_pic/step2.png "Tutorial image step 2")
 
-* You should now be able to make API calls from localhost:3000 (ie: `localhost:3000/parks`)
+* You should now be able to make API calls from localhost:3000 (ie: `GET` `localhost:3000/parks`)
 
 * If having troubles first try selecting content-type `x-www-form-urlencoded` in headers. If troubles persist feel free to email me (see bottom) or try looking here for more info on how this was set up: https://www.codementor.io/@omedale/simple-approach-to-rails-5-api-authentication-with-json-web-token-cpqbgrdo6
 
