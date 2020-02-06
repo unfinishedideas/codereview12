@@ -14,13 +14,15 @@ class Seed
   end
 
   def generate_parks
+    uniquer = 0;
     20.times do |i|
       park = Park.create!(
-        name: Faker::Movies::LordOfTheRings.location,
+        name: "#{uniquer}_" + Faker::Movies::LordOfTheRings.location,
         state: Faker::Team.state,
         national: [true, false].sample
       )
       puts "Park #{i}: Name is #{park.name}, is located in '#{park.state}'. Is it a national park? #{park.national}"
+      uniquer += 1
     end
   end
 end
